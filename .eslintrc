@@ -9,6 +9,12 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
+  "settings": {
+    "import/resolver": {
+      "typescript": {},
+      "webpack": {}
+    }
+  },
   "plugins": ["@typescript-eslint"],
   "rules": {
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]

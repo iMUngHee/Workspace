@@ -1,0 +1,5 @@
+@use 'theme' as theme;
+
+#root {
+  background-color: theme.$base-blue;
+}

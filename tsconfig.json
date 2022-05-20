@@ -1,7 +1,12 @@
 {
   "compilerOptions": {
     "module": "ESNext",
-    "allowSyntheticDefaultImports": true
+    "target": "ES6",
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "./",
+    "paths": {
+      "@Style/*": ["src/styles/*"]
+    }
   },
   "ts-node": {
     "compilerOptions": {

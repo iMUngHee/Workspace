@@ -14,6 +14,10 @@ const config: webpack.Configuration = {
   },
   resolve: {
     extensions: ['.ts', '.js'],
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+    alias: {
+      '@Style': path.resolve(__dirname, 'src/styles'),
+    },
   },
   module: {
     rules: [

@@ -1,5 +1,2 @@
-import './styles/index.scss';
-
-const root = document.querySelector('#root');
-
-root.textContent = 'Hello World!';
+import '@Style/reset.scss';
+import '@Style/global.scss';
