@@ -13,8 +13,8 @@
 
 ### **Preview**
 
-![Prototype]("./docs/image/Prototype.png")
-![Prototype_1]("./docs/image/Prototype_1.png")
+![Prototype](./docs//image/Prototype.png)
+![Prototype_1](./docs/image/Prototype_1.png)
 
 ## TODO (Practice)
 
