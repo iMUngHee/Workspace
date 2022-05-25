@@ -10,8 +10,8 @@ class App {
   stageWidth: number = document.body.clientWidth;
   stageHeight: number = document.body.clientHeight;
 
-  constructor() {
-    document.body.appendChild(this.canvas);
+  constructor($target) {
+    $target.appendChild(this.canvas);
 
     window.addEventListener('resize', this.resize.bind(this), false);
     this.resize();
@@ -34,5 +34,5 @@ class App {
 }
 
 window.onload = () => {
-  new App();
+  new App(document.querySelector('.root'));
 };
