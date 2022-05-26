@@ -5,7 +5,9 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./",
     "paths": {
-      "@Style/*": ["src/styles/*"]
+      "@Style/*": ["src/styles/*"],
+      "@Component/*": ["src/components/*"],
+      "@lib/*": ["src/lib/*"]
     }
   },
   "ts-node": {

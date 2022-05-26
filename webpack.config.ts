@@ -17,6 +17,8 @@ const config: webpack.Configuration = {
     modules: [path.resolve(__dirname, 'src'), 'node_modules'],
     alias: {
       '@Style': path.resolve(__dirname, 'src/styles'),
+      '@Component': path.resolve(__dirname, 'src/components'),
+      '@lib': path.resolve(__dirname, 'src/lib'),
     },
   },
   module: {
