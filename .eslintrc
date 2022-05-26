@@ -19,6 +19,7 @@
   "rules": {
     "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
     "no-new": 0,
-    "lines-between-class-members": "off"
+    "lines-between-class-members": "off",
+    "no-plusplus": "off"
   }
 }

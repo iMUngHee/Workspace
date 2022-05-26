@@ -1,4 +1,5 @@
 import Point from '@Component/point';
+import Circle from '@Component/circle';
 
 class App {
   $target: HTMLDivElement;
@@ -13,11 +14,18 @@ class App {
 
   mousePos: Point;
 
+  items: Circle[] = [];
+  total: number = 1;
+
   constructor($target) {
     this.$target = $target;
     this.$target.appendChild(this.canvas);
 
     this.mousePos = new Point();
+
+    for (let i = 0; i < this.total; i++) {
+      this.items[i] = new Circle(new Point(100, 100));
+    }
 
     window.addEventListener('resize', this.resize.bind(this), false);
     this.resize();
@@ -31,15 +39,27 @@ class App {
 
   resize() {
     this.canvas.width = this.stageWidth * this.pixelRatio;
-    this.canvas.height = this.stageHeight * this.pixelRatio;
+    // this.canvas.height = this.stageHeight * this.pixelRatio;
+    this.canvas.height = 1000;
 
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
+
+    this.ctx.shadowOffsetX = 0;
+    this.ctx.shadowOffsetY = 5;
+    this.ctx.shadowBlur = 6;
+    this.ctx.shadowColor = `rgba(0,0,0,0.1)`;
+
+    this.ctx.lineWidth = 2;
   }
 
   animate() {
     window.requestAnimationFrame(this.animate.bind(this));
 
     this.ctx.clearRect(0, 0, this.stageWidth, this.stageHeight);
+
+    for (let i = 0; i < this.items.length; i++) {
+      this.items[i].animate(this.ctx);
+    }
   }
 
   onDown(e) {
