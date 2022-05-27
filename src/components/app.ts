@@ -9,8 +9,8 @@ class App {
 
   pixelRatio: number = window.devicePixelRatio > 1 ? 2 : 1;
 
-  stageWidth: number = document.body.clientWidth;
-  stageHeight: number = document.body.clientHeight;
+  stageWidth: number;
+  stageHeight: number;
 
   mousePos: Point;
 
@@ -19,7 +19,13 @@ class App {
 
   constructor($target) {
     this.$target = $target;
+    this.$target.style.width = `100vw`;
+    this.$target.style.height = `100vh`;
+    this.canvas.style.border = `1px black solid`;
     this.$target.appendChild(this.canvas);
+
+    this.stageWidth = this.$target.clientWidth / 2;
+    this.stageHeight = this.$target.clientHeight / 2;
 
     this.mousePos = new Point();
 
@@ -38,16 +44,11 @@ class App {
   }
 
   resize() {
-    this.canvas.width = this.stageWidth * this.pixelRatio;
-    // this.canvas.height = this.stageHeight * this.pixelRatio;
-    this.canvas.height = 1000;
+    this.stageWidth = this.$target.clientWidth / 2;
+    this.stageHeight = this.$target.clientHeight / 2;
 
-    this.ctx.scale(this.pixelRatio, this.pixelRatio);
-
-    this.ctx.shadowOffsetX = 0;
-    this.ctx.shadowOffsetY = 5;
-    this.ctx.shadowBlur = 6;
-    this.ctx.shadowColor = `rgba(0,0,0,0.1)`;
+    this.canvas.width = this.stageWidth;
+    this.canvas.height = this.stageHeight;
 
     this.ctx.lineWidth = 2;
   }
