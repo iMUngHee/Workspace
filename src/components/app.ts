@@ -15,22 +15,25 @@ class App {
   mousePos: Point;
 
   items: Circle[] = [];
-  total: number = 1;
+  total: number = 60;
 
   constructor($target) {
     this.$target = $target;
     this.$target.style.width = `100vw`;
     this.$target.style.height = `100vh`;
-    this.canvas.style.border = `1px black solid`;
+
     this.$target.appendChild(this.canvas);
 
-    this.stageWidth = this.$target.clientWidth / 2;
-    this.stageHeight = this.$target.clientHeight / 2;
+    this.stageWidth = this.$target.clientWidth;
+    this.stageHeight = this.$target.clientHeight;
 
     this.mousePos = new Point();
 
     for (let i = 0; i < this.total; i++) {
-      this.items[i] = new Circle(new Point(100, 100));
+      const x = 50 + (i % 10) * 75;
+      const y = 50 + Math.floor(i / 10) * 75;
+
+      this.items[i] = new Circle(new Point(x, y));
     }
 
     window.addEventListener('resize', this.resize.bind(this), false);
@@ -44,11 +47,13 @@ class App {
   }
 
   resize() {
-    this.stageWidth = this.$target.clientWidth / 2;
-    this.stageHeight = this.$target.clientHeight / 2;
+    this.stageWidth = this.$target.clientWidth;
+    this.stageHeight = this.$target.clientHeight;
 
     this.canvas.width = this.stageWidth;
     this.canvas.height = this.stageHeight;
+
+    this.ctx.scale(this.pixelRatio, this.pixelRatio);
 
     this.ctx.lineWidth = 2;
   }
