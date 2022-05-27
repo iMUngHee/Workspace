@@ -15,12 +15,13 @@ class App {
   mousePos: Point;
 
   items: Circle[] = [];
-  total: number = 60;
+  total: number = 40;
 
   constructor($target) {
     this.$target = $target;
     this.$target.style.width = `100vw`;
     this.$target.style.height = `100vh`;
+    this.$target.style.display = `flex`;
 
     this.$target.appendChild(this.canvas);
 
@@ -30,8 +31,8 @@ class App {
     this.mousePos = new Point();
 
     for (let i = 0; i < this.total; i++) {
-      const x = 50 + (i % 10) * 75;
-      const y = 50 + Math.floor(i / 10) * 75;
+      const x = 50 + (i % 8) * 150;
+      const y = 50 + Math.floor(i / 8) * 150;
 
       this.items[i] = new Circle(new Point(x, y));
     }
@@ -50,8 +51,8 @@ class App {
     this.stageWidth = this.$target.clientWidth;
     this.stageHeight = this.$target.clientHeight;
 
-    this.canvas.width = this.stageWidth;
-    this.canvas.height = this.stageHeight;
+    this.canvas.width = this.stageWidth * this.pixelRatio;
+    this.canvas.height = this.stageHeight * this.pixelRatio;
 
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
 
