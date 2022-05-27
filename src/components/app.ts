@@ -54,6 +54,11 @@ class App {
     this.canvas.width = this.stageWidth * this.pixelRatio;
     this.canvas.height = this.stageHeight * this.pixelRatio;
 
+    this.ctx.shadowBlur = 5;
+    this.ctx.shadowOffsetX = 0;
+    this.ctx.shadowOffsetY = 4;
+    this.ctx.shadowColor = `rgba(0,0,0,0.7)`;
+
     this.ctx.scale(this.pixelRatio, this.pixelRatio);
 
     this.ctx.lineWidth = 2;
