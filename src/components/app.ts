@@ -15,6 +15,7 @@ class App {
   mousePos: Point;
 
   items: Circle[] = [];
+  selectedItem: Circle = null;
   total: number = 40;
 
   constructor($target) {
@@ -42,9 +43,7 @@ class App {
 
     window.requestAnimationFrame(this.animate.bind(this));
 
-    document.addEventListener('pointerdown', this.onDown.bind(this), false);
-    document.addEventListener('pointermove', this.onMove.bind(this), false);
-    document.addEventListener('pointerup', this.onUp.bind(this), false);
+    this.canvas.addEventListener('click', this.onClick.bind(this), false);
   }
 
   resize() {
@@ -74,17 +73,38 @@ class App {
     }
   }
 
-  onDown(e) {
+  onClick(e) {
     this.mousePos.x = e.clientX;
     this.mousePos.y = e.clientY;
-  }
-  onMove(e) {
-    this.mousePos.x = e.clientX;
-    this.mousePos.y = e.clientY;
-  }
-  onUp(e) {
-    this.mousePos.x = e.clientX;
-    this.mousePos.y = e.clientY;
+
+    let circle: Circle;
+
+    if (!this.selectedItem) {
+      for (let i = 0; i < this.items.length; i++) {
+        circle = this.items[i];
+        if (
+          (this.mousePos.x - circle.center.x) ** 2 +
+            (this.mousePos.y - circle.center.y) ** 2 <=
+          circle.radius ** 2
+        ) {
+          this.selectedItem = circle;
+        }
+      }
+    }
+
+    if (this.selectedItem) {
+      this.selectedItem.radius = 100;
+      this.selectedItem.animate(this.ctx);
+      if (
+        (this.mousePos.x - this.selectedItem.center.x) ** 2 +
+          (this.mousePos.y - this.selectedItem.center.y) ** 2 >
+        this.selectedItem.radius ** 2
+      ) {
+        this.selectedItem.radius = 50;
+        this.selectedItem.animate(this.ctx);
+        this.selectedItem = null;
+      }
+    }
   }
 }
 
